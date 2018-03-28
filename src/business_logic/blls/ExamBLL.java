@@ -1,4 +1,4 @@
-package business_logic;
+package business_logic.blls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,14 @@ import data_access.models.Exam;
 
 public class ExamBLL {
 	private ExamDAO ExamDAO;
-	//private ErrView ev;
 
 	public ExamBLL() {
 		ExamDAO = new ExamDAO();
-		//ev = new ErrView();
 	  }
 
 	public List<Exam> findExam(ArrayList<String> fd, ArrayList<String> val) {
 		List<Exam> l = ExamDAO.findOne(fd, val);
 		if (l.isEmpty()) {
-			//ev.setMessage("The Exam with these attributes was not found!");
 			throw new NoSuchElementException("The Exam with these attributes was not found!");
 		}
 		return l;
@@ -28,7 +25,6 @@ public class ExamBLL {
 	public List<Exam> listAllExams() {
 		List<Exam> l = ExamDAO.findAll();
 		if (l.isEmpty()) {
-			//ev.setMessage("There are no Exams in the database!");
 			throw new NoSuchElementException("There are no Exams in the database!");
 		}
 		return l;

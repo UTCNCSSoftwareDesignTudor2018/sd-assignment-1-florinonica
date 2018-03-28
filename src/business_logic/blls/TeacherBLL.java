@@ -1,4 +1,4 @@
-package business_logic;
+package business_logic.blls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +12,16 @@ import data_access.models.Teacher;
 public class TeacherBLL {
 	private List<Validator<Teacher>> validators;
 	private TeacherDAO TeacherDAO;
-	//private ErrView ev;
 
 	public TeacherBLL() {
 		validators = new ArrayList<Validator<Teacher>>();
 		validators.add(new TeacherEmailValidator());
 		TeacherDAO = new TeacherDAO();
-		//ev = new ErrView();
 	  }
 
 	public List<Teacher> findTeacher(ArrayList<String> fd, ArrayList<String> val) {
 		List<Teacher> l = TeacherDAO.findOne(fd, val);
 		if (l.isEmpty()) {
-			//ev.setMessage("The Teacher with these attributes was not found!");
 			throw new NoSuchElementException("The Teacher with these attributes was not found!");
 		}
 		return l;
@@ -33,7 +30,6 @@ public class TeacherBLL {
 	public List<Teacher> listAllTeachers() {
 		List<Teacher> l = TeacherDAO.findAll();
 		if (l.isEmpty()) {
-			//ev.setMessage("There are no Teachers in the database!");
 			throw new NoSuchElementException("There are no Teachers in the database!");
 		}
 		return l;

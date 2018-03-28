@@ -4,15 +4,17 @@ import java.util.List;
 
 public class Student extends User {
 	private String studentID;
+	private int group;
 	private List<Course> enrollments;
 	private List<Grade> grades;
 
 	public Student(String username, String password, String firstName, String lastName, String address, String email,
-			String CNP, String identityCardNumber, String studentID, List<Course> enrollments, List<Grade> grades) {
+			String CNP, String identityCardNumber, String studentID, int group, List<Course> enrollments, List<Grade> grades) {
 		super(username, password, firstName, lastName, address, email, CNP, identityCardNumber);
 		this.studentID = studentID;
 		this.enrollments = enrollments;
 		this.grades = grades;
+		this.group = group;
 	}
 
 	public String getStudentID() {
@@ -46,5 +48,13 @@ public class Student extends User {
 	@Override
 	public String toString() {
 		return "Student: " + this.getFirstName() + this.getLastName();
+	}
+
+	public int getGroup() {
+		return group;
+	}
+
+	public void setGroup(int group) {
+		this.group = group;
 	}
 }

@@ -1,4 +1,4 @@
-package business_logic;
+package business_logic.blls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,14 @@ import data_access.models.Grade;
 
 public class GradeBLL {
 	private GradeDAO GradeDAO;
-	//private ErrView ev;
 
 	public GradeBLL() {
 		GradeDAO = new GradeDAO();
-		//ev = new ErrView();
 	  }
 
 	public List<Grade> findGrade(ArrayList<String> fd, ArrayList<String> val) {
 		List<Grade> l = GradeDAO.findOne(fd, val);
 		if (l.isEmpty()) {
-			//ev.setMessage("The Grade with these attributes was not found!");
 			throw new NoSuchElementException("The Grade with these attributes was not found!");
 		}
 		return l;
@@ -28,7 +25,6 @@ public class GradeBLL {
 	public List<Grade> listAllGrades() {
 		List<Grade> l = GradeDAO.findAll();
 		if (l.isEmpty()) {
-			//ev.setMessage("There are no Grades in the database!");
 			throw new NoSuchElementException("There are no Grades in the database!");
 		}
 		return l;

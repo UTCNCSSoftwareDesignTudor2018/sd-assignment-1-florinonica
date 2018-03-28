@@ -1,4 +1,4 @@
-package business_logic;
+package business_logic.blls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +9,14 @@ import data_access.models.Course;
 
 public class CourseBLL {
 	private CourseDAO CourseDAO;
-	//private ErrView ev;
 
 	public CourseBLL() {
 		CourseDAO = new CourseDAO();
-		//ev = new ErrView();
 	  }
 
 	public List<Course> findCourse(ArrayList<String> fd, ArrayList<String> val) {
 		List<Course> l = CourseDAO.findOne(fd, val);
 		if (l.isEmpty()) {
-			//ev.setMessage("The Course with these attributes was not found!");
 			throw new NoSuchElementException("The Course with these attributes was not found!");
 		}
 		return l;
@@ -28,7 +25,6 @@ public class CourseBLL {
 	public List<Course> listAllCourses() {
 		List<Course> l = CourseDAO.findAll();
 		if (l.isEmpty()) {
-			//ev.setMessage("There are no Courses in the database!");
 			throw new NoSuchElementException("There are no Courses in the database!");
 		}
 		return l;
