@@ -131,7 +131,7 @@ public class StudentProfileView extends JFrame {
 
 	}
 
-	void SaveListener(ActionListener al) {
+	public void addSaveListener(ActionListener al) {
 		SaveButton.addActionListener(al);
 	}
 
@@ -147,7 +147,7 @@ public class StudentProfileView extends JFrame {
 		return emailTextField.getText();
 	}
 
-	public String getAddressName() {
+	public String getAddress() {
 		return addressTextField.getText();
 	}
 }

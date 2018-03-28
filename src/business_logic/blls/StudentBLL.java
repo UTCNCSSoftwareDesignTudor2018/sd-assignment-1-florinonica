@@ -12,11 +12,12 @@ import data_access.models.Student;
 public class StudentBLL {
 	private List<Validator<Student>> validators;
 	private StudentDAO StudentDAO;
-
+	private GradeBLL gbll;
 	public StudentBLL() {
 		validators = new ArrayList<Validator<Student>>();
 		validators.add(new StudentEmailValidator());
 		StudentDAO = new StudentDAO();
+		gbll = new GradeBLL();
 	  }
 
 	public List<Student> findStudent(ArrayList<String> fd, ArrayList<String> val) {
@@ -34,7 +35,12 @@ public class StudentBLL {
 		}
 		return l;
 	}
-
+	
+	public List<String> getGrade() {
+		List<String> s = new ArrayList<String>();
+		return s;
+	}
+	
 	public void insertStudent(Student t) throws Exception {
 		for (Validator<Student> v : validators) {
 			v.validate(t);

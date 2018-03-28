@@ -11,12 +11,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class CourseEnrollmentView extends JFrame {
 	private JPanel content;
 	JButton enrollButton = new JButton("Enroll");
 	JComboBox<String> courseSelector = new JComboBox<String>();
+	private JLabel lblEnrollmentFailed = new JLabel("Enrollment failed!");
 
 	public CourseEnrollmentView(List<String> courses) {
 		this.setTitle("CourseEnrollment");
@@ -45,13 +47,22 @@ public class CourseEnrollmentView extends JFrame {
 		lblSelectCourse.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblSelectCourse.setBounds(65, 42, 170, 14);
 		content.add(lblSelectCourse);
+		lblEnrollmentFailed.setForeground(Color.RED);
+		lblEnrollmentFailed.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblEnrollmentFailed.setBounds(75, 108, 130, 14);
+		content.add(lblEnrollmentFailed);
+		lblEnrollmentFailed.setVisible(false);
 	}
 
-	void EnrollListener(ActionListener al) {
+	public void addEnrollListener(ActionListener al) {
 		enrollButton.addActionListener(al);
 	}
 
 	public String getSelectedCourse() {
 		return String.valueOf(courseSelector.getSelectedItem());
+	}
+	
+	public void enrollFail() {
+		lblEnrollmentFailed.setVisible(true);
 	}
 }

@@ -36,11 +36,11 @@ public class TeacherMenuView extends JFrame {
 		content.add(openStudentTabButton);
 	}
 
-	void ViewProfileListener(ActionListener al) {
+	public void addViewProfileListener(ActionListener al) {
 		viewProfileButton.addActionListener(al);
 	}
 
-	void OpenStudentTabListener(ActionListener al) {
+	public void addOpenStudentTabListener(ActionListener al) {
 		openStudentTabButton.addActionListener(al);
 	}
 

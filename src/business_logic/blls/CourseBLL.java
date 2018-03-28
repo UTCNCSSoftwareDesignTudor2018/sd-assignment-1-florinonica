@@ -29,6 +29,18 @@ public class CourseBLL {
 		}
 		return l;
 	}
+	
+	public List<String> getCourseNames() {
+		List<Course> l = CourseDAO.findAll();
+		if (l.isEmpty()) {
+			throw new NoSuchElementException("There are no Courses in the database!");
+		}
+		List<String> s = new ArrayList<String>();
+		for(Course c: l) {
+			s.add(c.getCourseName());
+		}
+		return s;
+	}
 
 	public void insertCourse(Course t) throws Exception {
 		int i = CourseDAO.insert(t);

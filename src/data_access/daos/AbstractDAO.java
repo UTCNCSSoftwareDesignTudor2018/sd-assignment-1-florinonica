@@ -154,6 +154,33 @@ public class AbstractDAO<T> {
 		sb.append(")");
 		return sb.toString();
 	}
+	
+	public int insertEnroll(String studentid, String courseid) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO enrollment (studentid, courseid) VALUES (?, ?)");
+		Connection connection = null;
+		PreparedStatement statement = null;
+		int resultSet = 0;
+		String query = createInsertQuery();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.prepareStatement(query);
+				try {
+					statement.setObject(0, studentid);
+					statement.setObject(1, courseid);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				}
+			resultSet = statement.executeUpdate();
+			return resultSet;
+		} catch (SQLException e) {
+			LOGGER.log(Level.WARNING, type.getName() + "DAO:insert " + e.getMessage());
+		} finally {
+			ConnectionFactory.close(statement);
+			ConnectionFactory.close(connection);
+		}
+		return 0;
+	}
 
 	public int insert(T t) {
 		Connection connection = null;

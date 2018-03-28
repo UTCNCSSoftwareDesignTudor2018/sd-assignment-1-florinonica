@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class LoginView extends JFrame {
@@ -16,6 +17,7 @@ public class LoginView extends JFrame {
 	private JTextField passwordTextField;
 	JButton loginButton = new JButton("Login");
 	JCheckBox teacherCheckBox = new JCheckBox("I'm a teacher");
+	private JLabel lblNewLabel;
 
 	public LoginView() {
 		this.setTitle("Course Management Login");
@@ -47,21 +49,27 @@ public class LoginView extends JFrame {
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Calibri", Font.BOLD, 16));
-		lblPassword.setBounds(110, 10, 80, 15);
+		lblPassword.setBounds(110, 100, 80, 15);
 		content.add(lblPassword);
 
 		loginButton.setFont(new Font("Calibri", Font.BOLD, 16));
 		loginButton.setBounds(105, 170, 90, 25);
 		content.add(loginButton);
+		
+		lblNewLabel = new JLabel("Login fail!");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblNewLabel.setBounds(110, 11, 100, 14);
+		lblNewLabel.setVisible(false);
+		content.add(lblNewLabel);
 	}
-
 
 	public void addLoginListener(ActionListener al) {
 		loginButton.addActionListener(al);
 	}
-	
+
 	public String getUserType() {
-		if(teacherCheckBox.isSelected()) {
+		if (teacherCheckBox.isSelected()) {
 			return "Teacher";
 		}
 		return "Student";
@@ -73,5 +81,9 @@ public class LoginView extends JFrame {
 
 	public String getPassword() {
 		return passwordTextField.getText();
+	}
+	
+	public void loginFail() {
+		lblNewLabel.setVisible(true);
 	}
 }

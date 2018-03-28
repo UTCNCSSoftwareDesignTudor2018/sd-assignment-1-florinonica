@@ -10,9 +10,12 @@ public class LoginController {
 	private String userType = "Student";
 	private StudentController sc;
 	private TeacherController tc;
+
 	public LoginController(LoginView view) {
 		this.view = view;
 		view.addLoginListener(new LoginListener());
+		sc = new StudentController();
+		tc = new TeacherController();
 	}
 
 	class LoginListener implements ActionListener {
@@ -21,9 +24,19 @@ public class LoginController {
 			String username = view.getUsername();
 			String password = view.getPassword();
 			if (userType.equals("Student")) {
-				view.setVisible(false);
+				if (sc.login(username, password).isEmpty()) {
+					view.loginFail();
+				} else {
+					sc.openMenu();
+					view.setVisible(false);
+				}
 			} else {
-				view.setVisible(false);
+				if (tc.login(username, password).isEmpty()) {
+					view.loginFail();
+				} else {
+					tc.openMenu();
+					view.setVisible(false);
+				}
 			}
 		}
 	}

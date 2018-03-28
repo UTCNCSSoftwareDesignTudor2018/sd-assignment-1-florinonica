@@ -34,11 +34,11 @@ public class StudentMenuView extends JFrame {
 		content.add(enrollButton);
 	}
 
-	void ViewProfileListener(ActionListener al) {
+	public void addViewProfileListener(ActionListener al) {
 		viewProfileButton.addActionListener(al);
 	}
 	
-	void EnrollListener(ActionListener al) {
+	public void addEnrollListener(ActionListener al) {
 		enrollButton.addActionListener(al);
 	}
 
