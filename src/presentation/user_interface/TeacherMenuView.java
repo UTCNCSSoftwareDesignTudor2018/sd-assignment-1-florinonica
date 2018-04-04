@@ -17,7 +17,7 @@ public class TeacherMenuView extends JFrame {
 
 	public TeacherMenuView() {
 		this.setTitle("Teacher Menu");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(300, 300);
 		content = new JPanel();
 		this.setContentPane(content);

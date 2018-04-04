@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 	private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DBURL = "jdbc:mysql://localhost:3306/course_management";
+	private static final String DBURL = "jdbc:mysql://localhost:3306/course_management?useSSL=false";
 	private static final String USER = "root";
 	private static final String PASS = "Eclair112358";
 	private static ConnectionFactory singleInstance = new ConnectionFactory();

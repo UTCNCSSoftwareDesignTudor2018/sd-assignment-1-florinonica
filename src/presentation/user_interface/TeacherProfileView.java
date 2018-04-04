@@ -26,17 +26,19 @@ public class TeacherProfileView extends JFrame{
 	private JTextField addressTextField;
 	private JLabel lblIdcardNumber;
 	private JLabel lblAddress;
+	private JTextField passwordTextField;
+	private JTextField usernameTextField;
 
 	public TeacherProfileView(Teacher s) {
 		this.setTitle("Teacher Profile");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 750);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(600, 850);
 		content = new JPanel();
 		this.setContentPane(content);
 		content.setLayout(null);
 
 		SaveButton.setFont(new Font("Calibri", Font.PLAIN, 16));
-		SaveButton.setBounds(215, 600, 170, 55);
+		SaveButton.setBounds(215, 700, 170, 55);
 		content.add(SaveButton);
 
 		firstNameTextField = new JTextField();
@@ -98,7 +100,7 @@ public class TeacherProfileView extends JFrame{
 		IDCardNumberTextField.setBounds(230, 300, 300, 20);
 		content.add(IDCardNumberTextField);
 		IDCardNumberTextField.setColumns(10);
-		IDCardNumberTextField.setText(s.getidentityCardNumber());
+		IDCardNumberTextField.setText(s.getIdentityCardNumber());
 		IDCardNumberTextField.setEditable(false);
 
 		addressTextField = new JTextField();
@@ -115,19 +117,35 @@ public class TeacherProfileView extends JFrame{
 		lblAddress = new JLabel("Address:");
 		lblAddress.setBounds(100, 350, 100, 14);
 		content.add(lblAddress);
+		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(100, 550, 100, 20);
+		content.add(lblUsername);
+		
+		passwordTextField = new JTextField();
+		passwordTextField.setBounds(230, 600, 300, 20);
+		passwordTextField.setText(s.getPassword());
+		content.add(passwordTextField);
+		passwordTextField.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(100, 600, 100, 20);
+		content.add(lblPassword);
+		
+		usernameTextField = new JTextField();
+		usernameTextField.setBounds(230, 550, 300, 20);
+		usernameTextField.setText(s.getUsername());
+		content.add(usernameTextField);
+		usernameTextField.setColumns(10);
 
 	}
 
 	public void addSaveListener(ActionListener al) {
 		SaveButton.addActionListener(al);
 	}
-
-	public String getFirstName() {
-		return firstNameTextField.getText();
-	}
-
-	public String getLastName() {
-		return lastNameTextField.getText();
+	
+	public String getTeacherID() {
+		return teacherIDTextField.getText();
 	}
 
 	public String getEmail() {
@@ -136,6 +154,14 @@ public class TeacherProfileView extends JFrame{
 
 	public String getAddress() {
 		return addressTextField.getText();
+	}
+	
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+
+	public String getPassword() {
+		return passwordTextField.getText();
 	}
 
 }

@@ -7,14 +7,7 @@ public class Course {
 	private String courseName;
 	private List<Student> courseStudents;
 	private Teacher teacher;
-
-	public Course(String courseID, String courseName, List<Student> courseStudents, Teacher teacher) {
-		super();
-		this.courseID = courseID;
-		this.courseName = courseName;
-		this.courseStudents = courseStudents;
-		this.teacher = teacher;
-	}
+	private String teacherID;
 
 	public String getCourseID() {
 		return courseID;
@@ -51,6 +44,14 @@ public class Course {
 	@Override
 	public String toString() {
 		return this.getCourseName();
+	}
+
+	public String getTeacherID() {
+		return teacherID;
+	}
+
+	public void setTeacherID(String teacherID) {
+		this.teacherID = teacherID;
 	}
 
 }

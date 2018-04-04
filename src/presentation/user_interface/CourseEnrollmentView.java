@@ -19,10 +19,11 @@ public class CourseEnrollmentView extends JFrame {
 	JButton enrollButton = new JButton("Enroll");
 	JComboBox<String> courseSelector = new JComboBox<String>();
 	private JLabel lblEnrollmentFailed = new JLabel("Enrollment failed!");
+	private JLabel lblEnrollmentSuccess = new JLabel("Enrollment success!");
 
 	public CourseEnrollmentView(List<String> courses) {
 		this.setTitle("CourseEnrollment");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(441, 201);
 		content = new JPanel();
 		this.setContentPane(content);
@@ -52,6 +53,11 @@ public class CourseEnrollmentView extends JFrame {
 		lblEnrollmentFailed.setBounds(75, 108, 130, 14);
 		content.add(lblEnrollmentFailed);
 		lblEnrollmentFailed.setVisible(false);
+		lblEnrollmentSuccess.setForeground(Color.GREEN);
+		lblEnrollmentSuccess.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblEnrollmentSuccess.setBounds(75, 108, 130, 14);
+		content.add(lblEnrollmentSuccess);
+		lblEnrollmentSuccess.setVisible(false);
 	}
 
 	public void addEnrollListener(ActionListener al) {
@@ -63,6 +69,12 @@ public class CourseEnrollmentView extends JFrame {
 	}
 	
 	public void enrollFail() {
+		lblEnrollmentSuccess.setVisible(false);
 		lblEnrollmentFailed.setVisible(true);
+	}
+	
+	public void enrollSuccess() {
+		lblEnrollmentFailed.setVisible(false);
+		lblEnrollmentSuccess.setVisible(true);
 	}
 }

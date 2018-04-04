@@ -1,6 +1,5 @@
 package business_logic.blls;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -8,46 +7,34 @@ import data_access.daos.ExamDAO;
 import data_access.models.Exam;
 
 public class ExamBLL {
-	private ExamDAO ExamDAO;
+	private ExamDAO examDAO;
 
 	public ExamBLL() {
-		ExamDAO = new ExamDAO();
+		examDAO = new ExamDAO();
 	  }
 
-	public List<Exam> findExam(ArrayList<String> fd, ArrayList<String> val) {
-		List<Exam> l = ExamDAO.findOne(fd, val);
+	public List<Exam> findByID(String id) {
+		List<Exam> l = examDAO.findByID(id);
 		if (l.isEmpty()) {
-			throw new NoSuchElementException("The Exam with these attributes was not found!");
+			throw new NoSuchElementException("The  with these attributes was not found!");
 		}
 		return l;
 	}
-
+	
+	public List<Exam> findByCourse(String id) {
+		List<Exam> l = examDAO.findByCourseID(id);
+		if (l.isEmpty()) {
+			throw new NoSuchElementException("The  with these attributes was not found!");
+		}
+		return l;
+	}
+	
 	public List<Exam> listAllExams() {
-		List<Exam> l = ExamDAO.findAll();
+		List<Exam> l = examDAO.findAll();
 		if (l.isEmpty()) {
 			throw new NoSuchElementException("There are no Exams in the database!");
 		}
 		return l;
 	}
 
-	public void insertExam(Exam t) throws Exception {
-		int i = ExamDAO.insert(t);
-		if (i == 0) {
-			throw new Exception("Insert failed");
-		}
-	}
-
-	public void updateExamInformation(ArrayList<String> val, ArrayList<String> fd) throws Exception {
-		int i = ExamDAO.update(val, fd);
-		if (i == 0) {
-			throw new Exception("Update failed!");
-		}
-	}
-
-	public void deleteExam(ArrayList<String> fd, ArrayList<String> val) throws Exception {
-		int i = ExamDAO.delete(fd, val);
-		if (i == 0) {
-			throw new Exception("Delete failed");
-		}
-	}
 }

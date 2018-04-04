@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class StudentProfileView extends JFrame {
 	private JPanel content;
-	JButton SaveButton = new JButton("Save");
+	JButton saveButton = new JButton("Save");
 	private JTextField firstNameTextField;
 	private JTextField lastNameTextField;
 	private JTextField emailTextField;
@@ -28,25 +28,27 @@ public class StudentProfileView extends JFrame {
 	private JLabel lblIdcardNumber;
 	private JLabel lblGroup;
 	private JLabel lblAddress;
+	private JTextField passwordTextField;
+	private JTextField usernameTextField;
 
 	public StudentProfileView(Student s) {
 		this.setTitle("Student Profile");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 750);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(600, 900);
 		content = new JPanel();
 		this.setContentPane(content);
 		content.setLayout(null);
 
-		SaveButton.setFont(new Font("Calibri", Font.PLAIN, 16));
-		SaveButton.setBounds(215, 600, 170, 55);
-		content.add(SaveButton);
+		saveButton.setFont(new Font("Calibri", Font.PLAIN, 16));
+		saveButton.setBounds(215, 750, 170, 55);
+		content.add(saveButton);
 
 		firstNameTextField = new JTextField();
 		firstNameTextField.setBounds(230, 100, 300, 20);
 		content.add(firstNameTextField);
 		firstNameTextField.setColumns(10);
 		firstNameTextField.setText(s.getFirstName());
-		firstNameTextField.setEditable(true);
+		firstNameTextField.setEditable(false);
 
 		JLabel lblFirstName = new JLabel("First Name:");
 		lblFirstName.setBounds(100, 100, 100, 20);
@@ -57,7 +59,7 @@ public class StudentProfileView extends JFrame {
 		content.add(lastNameTextField);
 		lastNameTextField.setColumns(10);
 		lastNameTextField.setText(s.getLastName());
-		lastNameTextField.setEditable(true);
+		lastNameTextField.setEditable(false);
 
 		emailTextField = new JTextField();
 		emailTextField.setBounds(230, 200, 300, 20);
@@ -100,7 +102,7 @@ public class StudentProfileView extends JFrame {
 		IDCardNumberTextField.setBounds(230, 300, 300, 20);
 		content.add(IDCardNumberTextField);
 		IDCardNumberTextField.setColumns(10);
-		IDCardNumberTextField.setText(s.getidentityCardNumber());
+		IDCardNumberTextField.setText(s.getIdentityCardNumber());
 		IDCardNumberTextField.setEditable(false);
 
 		groupTextField = new JTextField();
@@ -118,29 +120,44 @@ public class StudentProfileView extends JFrame {
 		addressTextField.setEditable(true);
 
 		lblIdcardNumber = new JLabel("IDCard Number:");
-		lblIdcardNumber.setBounds(100, 300, 100, 14);
+		lblIdcardNumber.setBounds(100, 300, 100, 20);
 		content.add(lblIdcardNumber);
 
 		lblGroup = new JLabel("Group:");
-		lblGroup.setBounds(100, 350, 100, 14);
+		lblGroup.setBounds(100, 350, 100, 20);
 		content.add(lblGroup);
 
 		lblAddress = new JLabel("Address:");
-		lblAddress.setBounds(100, 400, 100, 14);
+		lblAddress.setBounds(100, 400, 100, 20);
 		content.add(lblAddress);
 
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(100, 600, 100, 20);
+		content.add(lblUsername);
+
+		passwordTextField = new JTextField();
+		passwordTextField.setBounds(230, 650, 300, 20);
+		passwordTextField.setText(s.getPassword());
+		content.add(passwordTextField);
+		passwordTextField.setColumns(10);
+
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(100, 650, 100, 20);
+		content.add(lblPassword);
+
+		usernameTextField = new JTextField();
+		usernameTextField.setBounds(230, 600, 300, 20);
+		usernameTextField.setText(s.getUsername());
+		content.add(usernameTextField);
+		usernameTextField.setColumns(10);
 	}
 
 	public void addSaveListener(ActionListener al) {
-		SaveButton.addActionListener(al);
+		saveButton.addActionListener(al);
 	}
 
-	public String getFirstName() {
-		return firstNameTextField.getText();
-	}
-
-	public String getLastName() {
-		return lastNameTextField.getText();
+	public String getStudentID() {
+		return studentIDTextField.getText();
 	}
 
 	public String getEmail() {
@@ -149,5 +166,13 @@ public class StudentProfileView extends JFrame {
 
 	public String getAddress() {
 		return addressTextField.getText();
+	}
+
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+
+	public String getPassword() {
+		return passwordTextField.getText();
 	}
 }

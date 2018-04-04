@@ -1,20 +1,14 @@
 package data_access.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Grade {
 	private String gradeID;
 	private int value;
+	private String examID;
+	private String studentID;
 	private Exam exam;
 	private Date date;
-	
-	public Grade(String gradeID, int value, Exam exam, Date date) {
-		super();
-		this.gradeID = gradeID;
-		this.value = value;
-		this.exam = exam;
-		this.date = date;
-	}
 
 	public String getGradeID() {
 		return gradeID;
@@ -51,5 +45,21 @@ public class Grade {
 	@Override
 	public String toString() {
 		return this.getExam().toString() + " Grade:" + this.getValue();
+	}
+
+	public String getExamID() {
+		return examID;
+	}
+
+	public void setExamID(String examID) {
+		this.examID = examID;
+	}
+
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
 	}
 }

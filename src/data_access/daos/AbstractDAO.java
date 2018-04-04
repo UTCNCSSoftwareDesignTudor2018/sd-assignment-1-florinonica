@@ -20,6 +20,7 @@ import data_access.connection.ConnectionFactory;
 public class AbstractDAO<T> {
 	protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
 	private final Class<T> type;
+
 	@SuppressWarnings("unchecked")
 	public AbstractDAO() {
 		this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -33,15 +34,28 @@ public class AbstractDAO<T> {
 		sb.append(type.getSimpleName().toLowerCase(Locale.ROOT));
 		sb.append(" WHERE ");
 		for (String s : fd) {
-			sb.append(s + "=?, AND ");
+			if (s.equals("password")) {
+				sb.append("`password`=? AND ");
+			} else
+				sb.append(s + "=? AND ");
 		}
-		sb.setLength(sb.length() - 6);
+		sb.setLength(sb.length() - 5);
 		return sb.toString();
 	}
 
 	public static ArrayList<String> retrieveProperties(Object object) {
 		ArrayList<String> s = new ArrayList<String>();
 		for (Field field : object.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			try {
+				s.add(field.get(object).toString());
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		for (Field field : object.getClass().getSuperclass().getDeclaredFields()) {
 			field.setAccessible(true);
 			try {
 				s.add(field.get(object).toString());
@@ -90,6 +104,7 @@ public class AbstractDAO<T> {
 			statement = connection.prepareStatement(query);
 			int i = 1;
 			for (String s : val) {
+				System.out.println(s);
 				statement.setObject(i++, s);
 			}
 			resultSet = statement.executeQuery();
@@ -110,6 +125,14 @@ public class AbstractDAO<T> {
 			while (resultSet.next()) {
 				T instance = type.newInstance();
 				for (Field field : type.getDeclaredFields()) {
+					if (!field.getName().equals("enrollments") && !field.getName().equals("grades") ) {
+						Object value = resultSet.getObject(field.getName());
+						PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(), type);
+						Method method = propertyDescriptor.getWriteMethod();
+						method.invoke(instance, value);
+					}
+				}
+				for (Field field : type.getSuperclass().getDeclaredFields()) {
 					Object value = resultSet.getObject(field.getName());
 					PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(), type);
 					Method method = propertyDescriptor.getWriteMethod();
@@ -142,7 +165,10 @@ public class AbstractDAO<T> {
 		sb.append(" (");
 		int i = 0;
 		for (Field field : type.getDeclaredFields()) {
-			sb.append(field.getName() + ", ");
+			if (field.getName().equals("password")) {
+				sb.append("course_management.`password`, ");
+			} else
+				sb.append(field.getName() + ", ");
 			i++;
 		}
 		sb.setLength(sb.length() - 2);
@@ -154,7 +180,7 @@ public class AbstractDAO<T> {
 		sb.append(")");
 		return sb.toString();
 	}
-	
+
 	public int insertEnroll(String studentid, String courseid) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO enrollment (studentid, courseid) VALUES (?, ?)");
@@ -165,12 +191,12 @@ public class AbstractDAO<T> {
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.prepareStatement(query);
-				try {
-					statement.setObject(0, studentid);
-					statement.setObject(1, courseid);
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				}
+			try {
+				statement.setObject(0, studentid);
+				statement.setObject(1, courseid);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			}
 			resultSet = statement.executeUpdate();
 			return resultSet;
 		} catch (SQLException e) {

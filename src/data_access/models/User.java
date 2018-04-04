@@ -10,18 +10,6 @@ public class User {
 	private String CNP;
 	private String identityCardNumber;
 
-	public User(String username, String password, String firstName, String lastName, String address, String email,
-			String CNP, String identityCardNumber) {
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.email = email;
-		this.CNP = CNP;
-		this.identityCardNumber = identityCardNumber;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -78,11 +66,11 @@ public class User {
 		CNP = cNP;
 	}
 
-	public String getidentityCardNumber() {
+	public String getIdentityCardNumber() {
 		return identityCardNumber;
 	}
 
-	public void setidentityCardNumber(String identityCardNumber) {
+	public void setIdentityCardNumber(String identityCardNumber) {
 		this.identityCardNumber = identityCardNumber;
 	}
 
