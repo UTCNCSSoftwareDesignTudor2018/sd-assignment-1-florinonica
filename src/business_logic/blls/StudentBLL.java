@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import business_logic.validators.StudentEmailValidator;
 import business_logic.validators.Validator;
 import data_access.daos.StudentDAO;
-import data_access.models.Student;
+import data_access.entities.Student;
 
 public class StudentBLL {
 	private List<Validator<Student>> validators;

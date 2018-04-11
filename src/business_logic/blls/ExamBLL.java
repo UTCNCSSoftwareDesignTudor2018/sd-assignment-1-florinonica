@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import data_access.daos.ExamDAO;
-import data_access.models.Exam;
+import data_access.entities.Exam;
 
 public class ExamBLL {
 	private ExamDAO examDAO;

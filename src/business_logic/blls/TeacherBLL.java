@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import data_access.daos.TeacherDAO;
-import data_access.models.Teacher;
+import data_access.entities.Teacher;
 
 public class TeacherBLL {
 	private TeacherDAO teacherDAO;

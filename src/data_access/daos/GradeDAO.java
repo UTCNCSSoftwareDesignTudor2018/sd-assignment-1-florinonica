@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data_access.connection.ConnectionFactory;
-import data_access.models.Grade;
+import data_access.entities.Grade;
 
 public class GradeDAO {
 	public List<Grade> createGradeObject(ResultSet gradeSet) {

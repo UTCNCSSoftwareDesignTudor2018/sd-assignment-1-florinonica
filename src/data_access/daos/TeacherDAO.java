@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data_access.connection.ConnectionFactory;
-import data_access.models.Teacher;
+import data_access.entities.Teacher;
 
 public class TeacherDAO {
 	public List<Teacher> createTeacherObject(ResultSet teacherSet) {

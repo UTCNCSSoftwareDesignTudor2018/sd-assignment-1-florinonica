@@ -2,25 +2,26 @@ package presentation.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
-import business_logic.blls.GradeBLL;
-import business_logic.blls.StudentBLL;
-import business_logic.blls.StudentEnrollmentBLL;
-import business_logic.blls.TeacherBLL;
-import data_access.models.Student;
-import data_access.models.Teacher;
-import presentation.user_interface.TeacherMenuView;
-import presentation.user_interface.TeacherProfileView;
-import presentation.user_interface.AddStudentView;
-import presentation.user_interface.EnrollmentsView;
-import presentation.user_interface.GradeView;
-import presentation.user_interface.StudentTableView;
+import business_logic.blls.*;
+import data_access.entities.Course;
+import data_access.entities.Student;
+import data_access.entities.StudentEnrollment;
+import data_access.entities.Teacher;
+import presentation.views.AddStudentView;
+import presentation.views.EnrollmentsView;
+import presentation.views.GradeView;
+import presentation.views.StudentTableView;
+import presentation.views.TeacherMenuView;
+import presentation.views.TeacherProfileView;
 
 public class TeacherController {
 	private TeacherBLL tbll;
 	private StudentBLL sbll;
 	private GradeBLL gbll;
+	private CourseBLL cbll;
 	private TeacherMenuView tmv;
 	private StudentEnrollmentBLL ebll;
 	public TeacherProfileView tpv;
@@ -31,6 +32,7 @@ public class TeacherController {
 		this.sbll = new StudentBLL();
 		this.tmv = new TeacherMenuView();
 		this.gbll = new GradeBLL();
+		this.cbll = new CourseBLL();
 		this.ebll = new StudentEnrollmentBLL();
 		this.tmv.setVisible(false);
 		this.stv = new StudentTableView();
@@ -101,7 +103,12 @@ public class TeacherController {
 		public void actionPerformed(ActionEvent e) {
 			String id = stv.getData(0);
 			EnrollmentsView ev = new EnrollmentsView();
-			ev.setTableContents(ebll.findByStudent(id));
+			List<Course> c = new ArrayList<Course>();
+			List<StudentEnrollment> se = ebll.findByStudent(id);
+			for(StudentEnrollment s: se) {
+				c.addAll(cbll.findByID(s.getCourseID()));
+			}
+			ev.setTableContents(c);
 			ev.setVisible(true);
 		}
 	}

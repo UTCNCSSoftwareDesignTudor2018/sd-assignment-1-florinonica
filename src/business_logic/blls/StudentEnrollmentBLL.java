@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import data_access.daos.StudentEnrollmentDAO;
-import data_access.models.StudentEnrollment;
+import data_access.entities.StudentEnrollment;
 
 public class StudentEnrollmentBLL {
 	private StudentEnrollmentDAO studentEnrollmentDAO;

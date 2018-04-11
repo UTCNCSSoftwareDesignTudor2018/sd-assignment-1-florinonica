@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data_access.connection.ConnectionFactory;
-import data_access.models.Exam;
+import data_access.entities.Exam;
 
 public class ExamDAO {
 	public List<Exam> createExamObject(ResultSet examSet) {

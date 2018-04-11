@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import data_access.daos.GradeDAO;
-import data_access.models.Grade;
+import data_access.entities.Grade;
 
 public class GradeBLL {
 	private GradeDAO gradeDAO;

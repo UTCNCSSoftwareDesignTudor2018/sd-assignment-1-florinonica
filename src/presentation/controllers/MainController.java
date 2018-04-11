@@ -1,6 +1,6 @@
 package presentation.controllers;
 
-import presentation.user_interface.LoginView;
+import presentation.views.LoginView;
 
 public class MainController {
 	public static void main(String args[]) {

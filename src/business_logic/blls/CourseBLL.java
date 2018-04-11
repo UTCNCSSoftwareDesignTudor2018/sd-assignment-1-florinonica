@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import data_access.daos.CourseDAO;
-import data_access.models.Course;
+import data_access.entities.Course;
 
 public class CourseBLL {
 	private CourseDAO courseDAO;

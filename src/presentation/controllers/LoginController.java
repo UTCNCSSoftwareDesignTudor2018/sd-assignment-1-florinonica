@@ -3,7 +3,7 @@ package presentation.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import presentation.user_interface.LoginView;
+import presentation.views.LoginView;
 
 public class LoginController {
 	private LoginView view;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data_access.connection.ConnectionFactory;
-import data_access.models.Course;
+import data_access.entities.Course;
 
 public class CourseDAO {
 	public List<Course> createCourseObject(ResultSet courseSet) {

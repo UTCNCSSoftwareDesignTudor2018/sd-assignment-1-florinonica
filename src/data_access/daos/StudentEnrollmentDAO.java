@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data_access.connection.ConnectionFactory;
-import data_access.models.StudentEnrollment;
+import data_access.entities.StudentEnrollment;
 
 public class StudentEnrollmentDAO {
 	public List<StudentEnrollment> createStudentEnrollmentObject(ResultSet studentEnrollmentSet) {
